@@ -1,6 +1,7 @@
 local fill = {}
 local pos1 = {}
 local pos2 = {}
+local airfill = {}
 local selected_node = {}
 local delete_mode = {}
 
@@ -61,6 +62,28 @@ minetest.register_chatcommand("fill", {
                 for z = p1.z, p2.z do
                     local current_node = minetest.get_node({x=x,y=y,z=z})
                     if current_node.name ~= "air" and not current_node.name:find("water") then
+                        minetest.set_node({x=x,y=y,z=z}, {name=selected_node[name]})
+                        count = count + 1
+                    end
+                end
+            end
+        end
+        return true, "Filled "..count.." nodes with "..selected_node[name]
+    end
+})
+
+minetest.register_chatcommand("airfill", {
+    description = "Fill selected area, including air",
+    privs = {server=true},
+    func = function(name)
+        if not pos1[name] or not pos2[name] then return false, "Set pos1 and pos2 first." end
+        if not selected_node[name] then return false, "Use /setnode first." end
+        local p1, p2 = sort_pos(pos1[name], pos2[name])
+        local count = 0
+        for x = p1.x, p2.x do
+            for y = p1.y, p2.y do
+                for z = p1.z, p2.z do
+                    local current_node = minetest.get_node({x=x,y=y,z=z})
                         minetest.set_node({x=x,y=y,z=z}, {name=selected_node[name]})
                         count = count + 1
                     end
