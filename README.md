@@ -8,6 +8,8 @@ I made it with a little help from AI (read made by AI completely), and its purpo
 
 /setnode: Takes object in hand and makes it the replacment for anything replaced.
 
-/fill: Basically a replace command; it finds all except air and water blocks in the area selected and sets them to the /setnode node, whatever that might be (note, this will cause the server to crash if it's not an item you can place normally.)
+/fill: Basically a replace command; it finds all except air and water blocks in the area selected and sets them to the /setnode node, whatever that might be. (Please note this will cause the server to crash if it's not an item you can place normally.)
 
 /delete: Converts all blocks between pos1 and pos2 to air blocks.
+
+/airfill: Basically a replace command; it finds all blocks in the area selected and sets them to the /setnode node, whatever that might be (Please note this will cause the server to crash if it's not an item you can place normally.)
